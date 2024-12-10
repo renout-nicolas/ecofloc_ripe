@@ -16,5 +16,7 @@ rm ECOFLOC_RAM_PID_$PID.csv
 rm ECOFLOC_CPU_PID_$PID.csv
 ecofloc --ram -p $PID -i $INTERVAL -t $TIME -f&
 ecofloc --cpu -p $PID -i $INTERVAL -t $TIME -f&
+sleep $TIME
+sleep 3
 mv ECOFLOC_RAM_PID_$PID.csv RAM_$timestamp.csv
 mv ECOFLOC_CPU_PID_$PID.csv CPU_$timestamp.csv
