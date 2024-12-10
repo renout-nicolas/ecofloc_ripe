@@ -1,0 +1,20 @@
+will create files in ./
+
+part installation
+
+git clone https://github.com/renout-nicolas/ecofloc_ripe.git
+./ecofloc_ripe/ecofloc_installer.sh
+
+
+
+Part lancement. DEFINIR INTERVAL, TIME.
+
+sudo su
+PID=$(ps aux | grep 'bind' | head -n 1 | awk '{print $2}')
+timestamp=`date '+%d/%m/%Y_%H:%M:%S'`
+rm ECOFLOC_RAM_PID_$PID.csv
+rm ECOFLOC_CPU_PID_$PID.csv
+ecofloc --ram -p $PID -i $INTERVAL -t $TIME -f&
+ecofloc --cpu -p $PID -i $INTERVAL -t $TIME -f&
+mv ECOFLOC_RAM_PID_$PID.csv RAM_$timestamp.csv
+mv ECOFLOC_CPU_PID_$PID.csv CPU_$timestamp.csv
